@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Gerenciamento de Livros (Open Library API) - Projeto 07 DWIII</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Sistema de Gerenciamento de Livros — Projeto 07 (DWIII)</h1>
+    <p>CRUD completo em Node.js puro (sem frameworks) com persistência SQLite e integração à <strong>Open Library Search API</strong>.</p>
+
+    <div class="card">
+      <h2>1. Busca Automática na Open Library API (com Fallback Manual)</h2>
+      <div class="search-bar">
+        <input type="text" id="termoOpenLibrary" placeholder="Digite o título ou ISBN (Ex: Clean Code, Dom Casmurro, 9780132350884)..." />
+        <button type="button" class="btn" id="btnBuscarOpenLibrary">Buscar na Open Library</button>
+      </div>
+      <div id="statusOpenLibrary" class="msg"></div>
+    </div>
+
+    <div class="card">
+      <h2 id="tituloForm">2. Cadastrar / Editar Livro</h2>
+      <form id="formLivro">
+        <input type="hidden" id="livroId" />
+        <div class="grid">
+          <div><label>Título *</label><input type="text" id="titulo" required /></div>
+          <div><label>Autor *</label><input type="text" id="autor" required /></div>
+          <div><label>ISBN</label><input type="text" id="isbn" placeholder="Ex: 978-85-359-0277-8" /></div>
+          <div><label>Ano de Publicação</label><input type="number" id="ano" placeholder="Ex: 2008" /></div>
+          <div><label>Gênero</label><input type="text" id="genero" placeholder="Ex: Tecnologia / Romance" /></div>
+          <div>
+            <label>Status de Leitura *</label>
+            <select id="status">
+              <option value="Quero ler">Quero ler</option>
+              <option value="Lendo">Lendo</option>
+              <option value="Concluído">Concluído</option>
+            </select>
+          </div>
+        </div>
+        <br />
+        <button type="submit" class="btn" id="btnSalvar">Salvar Livro</button>
+        <button type="button" class="btn btn-sec" id="btnCancelar" style="display:none;">Cancelar Edição</button>
+      </form>
+      <div id="msgFeedback" class="msg"></div>
+    </div>
+
+    <h2>3. Acervo Cadastrado (<code>/api/livros</code>)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>ISBN</th>
+          <th>Ano</th>
+          <th>Gênero</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaLivros"></tbody>
+    </table>
+  </div>
+  <script src="/script.js"></script>
+</body>
+</html>
